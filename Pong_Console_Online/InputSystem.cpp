@@ -10,6 +10,22 @@
 
 InputSystem* InputSystem::Instance = nullptr;
 
+bool InputSystem::GetKey(const char* keyName)
+{
+	auto Key = FoundKey(keyName);
+	if (Key != keyList.end() && Key->state == KeyState::Holded)
+		return true;
+	else
+		return false;
+}
+
+
+
+std::list<InputSystem::Key>::iterator InputSystem::FoundKey(const char* keyName)
+{
+	return std::find_if(keyList.begin(), keyList.end(), [&](Key const& key) {return key.name == keyName; });
+}
+
 InputSystem::InputSystem()
 {
 	if (InputSystem::Instance == nullptr) {
@@ -21,48 +37,32 @@ InputSystem::InputSystem()
 
 void InputSystem::Update()
 {
-	std::cout << "input update " << std::endl;
-
-	std::list<Key> oldKeyStates = CopyKeyListState();
-	CleanKeyState();
+	int keyPressed = 0;
 
 	if (_kbhit())
 	{
-		int keyValue = _getch();
-		auto foundKey = std::find_if(keyList.begin(), keyList.end(), [&](Key const& key) {return key.value == keyValue; });
+		keyPressed = _getch();
+	}
 
-		if (foundKey != keyList.end())
-		{
-			foundKey->state = KeyState::Pressed;
-		}
+	CalculateCurrentKeyStates(keyPressed);
+}
+
+//Clean -> Pressed -> hold -> Released -> Sleep
+//				|              ^
+//				 --------------'
+
+void InputSystem::CalculateCurrentKeyStates(int currentPressed)
+{
+	for (auto k : keyList)
+	{
+		auto key = FoundKey(k.name);
+
+		if (key->value == currentPressed)
+			key->state = KeyState::Holded;
 		else
-			std::cout << "Key dosent registered: int " << keyValue << std::endl;
-	}
-	//Calculate the input state HOLD, PRESSED, RELEASED, CLEAN
-	/*printKeysStates(oldKeyStates, "oldKeyStates");
-	printKeysStates(keyList, "keyList");*/
-	Sleep(100);
-}
-
-void InputSystem::CleanKeyState()
-{
-	for (auto k : keyList)
-	{
-		k.state = KeyState::Clean;
+			key->state = KeyState::Clean;
 	}
 }
-
-std::list<InputSystem::Key>  InputSystem::CopyKeyListState()
-{
-	std::list<Key> oldKeyStates;
-	for (auto k : keyList)
-	{
-		Key newKey = Key(k);
-		oldKeyStates.push_back(newKey);
-	}
-	return oldKeyStates;
-}
-
 
 void InputSystem::printKeysStates(std::list<Key> list, const char* tittle)
 {

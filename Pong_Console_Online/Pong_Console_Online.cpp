@@ -17,8 +17,7 @@ void Setup()
 }
 
 void InputThread()
-{
-    InputSystem inputSystem;   
+{ 
     while(gameIsRunning)
     {
         InputSystem::Instance->Update();
@@ -27,6 +26,7 @@ void InputThread()
 
 int main()
 {
+    InputSystem inputSystem;
     std::cout << "Hello Client!\n";
     std::thread t1(InputThread);
     Setup();
