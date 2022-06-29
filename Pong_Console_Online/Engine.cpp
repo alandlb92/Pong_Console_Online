@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include <windows.h>
 
 Engine::~Engine()
 {
@@ -13,13 +14,13 @@ const bool Engine::IsGameRunning()
 
 void Engine::SetUp()
 {
-    _inputSystem = new InputSystem(gameIsRunning);
-    
-    GraphicsSystem graphicsSystem;
+    _inputSystem = new InputSystem(gameIsRunning);    
+    _graphicsSystem = new GraphicsSystem(Vector2(50, 10));
 
-    ActorBase* actor = new ActorBase{};
-    Shape* shape = new Shape{ "o" };
-    actor->AddComponent(shape);
+    actorTest = new ActorBase();
+    Shape* shape = new Shape{ "*" };
+    actorTest->AddComponent(shape);
+    _actors.push_back(actorTest);
 }
 
 void Engine::UpDate(double DeltaTime)
@@ -27,5 +28,15 @@ void Engine::UpDate(double DeltaTime)
     if (_inputSystem->GetKey("Escape"))
         gameIsRunning = false;
 
+    //Update
+    actorTest->transform->position.x += (50 * DeltaTime);
+    if (actorTest->transform->position.x > _graphicsSystem->GetScreenSize().x)
+    {
+        actorTest->transform->position.x = 0;
+        actorTest->transform->position.y++;
+       // Beep(600, 150);
+    }
 
+    //Draw
+    _graphicsSystem->Draw(_actors);
 }

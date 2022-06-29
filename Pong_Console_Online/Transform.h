@@ -1,13 +1,10 @@
 #pragma once
+#include "Vector2.h"
 class Transform
 {
-public:
-	struct Position
-	{
-		float x;
-		float y;
-	};
-	Position position;
+public:	
+	Transform() : position(Vector2(0)) {}
+	Vector2 position;
 
 
 };

@@ -9,7 +9,8 @@ private:
 	std::list<Component*> components;
 
 public:
-	Transform transform;
+	ActorBase();
+	Transform* transform;
 	void AddComponent(Component* component);
 };
 

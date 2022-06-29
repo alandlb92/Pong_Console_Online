@@ -23,8 +23,8 @@ int main()
     {
         currentTime = std::chrono::high_resolution_clock::now();
         deltaTime = std::chrono::duration_cast<std::chrono::nanoseconds>(currentTime - lastTime).count() * 1e-9;
-        _engine->UpDate(deltaTime);
         lastTime = std::chrono::high_resolution_clock::now();
+        _engine->UpDate(deltaTime);
     }
 
     std::cout << "Game is ending\n";
