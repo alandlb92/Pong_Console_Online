@@ -7,8 +7,23 @@
 #else
 #include <unistd.h>
 #endif
+InputSystem::InputSystem(bool& gameIsRunning) : e_gameIsRunning(gameIsRunning)
+{
+	_inputThread = new std::thread(&InputSystem::InputThread, this);
+}
 
-InputSystem* InputSystem::Instance = nullptr;
+InputSystem::~InputSystem()
+{
+	_inputThread->join();
+}
+
+void InputSystem::InputThread()
+{
+	while (e_gameIsRunning)
+	{
+		Update();
+	}
+}
 
 bool InputSystem::GetKey(const char* keyName)
 {
@@ -19,20 +34,9 @@ bool InputSystem::GetKey(const char* keyName)
 		return false;
 }
 
-
-
 std::list<InputSystem::Key>::iterator InputSystem::FoundKey(const char* keyName)
 {
 	return std::find_if(keyList.begin(), keyList.end(), [&](Key const& key) {return key.name == keyName; });
-}
-
-InputSystem::InputSystem()
-{
-	if (InputSystem::Instance == nullptr) {
-		InputSystem::Instance = this;
-	}
-	else
-		delete this;
 }
 
 void InputSystem::Update()
@@ -46,10 +50,6 @@ void InputSystem::Update()
 
 	CalculateCurrentKeyStates(keyPressed);
 }
-
-//Clean -> Pressed -> hold -> Released -> Sleep
-//				|              ^
-//				 --------------'
 
 void InputSystem::CalculateCurrentKeyStates(int currentPressed)
 {
