@@ -2,32 +2,9 @@
 //
 
 #include <iostream>
-#include "Engine.h"
-#include <chrono>
-
-Engine* _engine = nullptr;
-
 
 int main()
 {
-    std::cout << "Hello Client!\n";
-    _engine = new Engine;
-    _engine->SetUp();
-    std::cout << "Game starts\n";
-    
-    auto currentTime = std::chrono::high_resolution_clock::now();
-    auto lastTime = std::chrono::high_resolution_clock::now();
-    double deltaTime = 0;
+	std::cout << "Hello Client";
 
-    while (_engine->IsGameRunning())
-    {
-        currentTime = std::chrono::high_resolution_clock::now();
-        deltaTime = std::chrono::duration_cast<std::chrono::nanoseconds>(currentTime - lastTime).count() * 1e-9;
-        lastTime = std::chrono::high_resolution_clock::now();
-        _engine->UpDate(deltaTime);
-    }
-
-    std::cout << "Game is ending\n";
-    delete _engine;
-    std::cout << "Good Bye Client!\n";
 }

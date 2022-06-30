@@ -12,13 +12,13 @@ private:
 	bool gameIsRunning = true;
 	InputSystem* _inputSystem = nullptr;
 	GraphicsSystem* _graphicsSystem = nullptr;
-	ActorBase* actorTest = nullptr;
-	std::list<ActorBase*> _actors;
+	ActorBase** _actors;
+	void SetUp(bool isServer);
+	void UpDate(double DeltaTime);
 
 public:
 	~Engine();
-	void SetUp(); 
-	void UpDate(double DeltaTime);
+	void Start(bool isServer);
 	const bool IsGameRunning();
 };
 
