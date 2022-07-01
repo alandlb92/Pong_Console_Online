@@ -11,9 +11,18 @@ const bool Engine::IsGameRunning()
 	return gameIsRunning;
 }
 
-void Engine::Start(bool isServer)
+void Engine::Start(Scene startScene, bool isServer)
 {
+	_currentScene = &startScene;
+
 	SetUp(isServer);
+
+	if (_currentScene != nullptr)
+		for (int i = 0; i < _currentScene->GetActorNumbers(); i++)
+		{
+			_currentScene->GetActors()[i]->Start();
+		}
+
 	auto currentTime = std::chrono::high_resolution_clock::now();
 	auto lastTime = std::chrono::high_resolution_clock::now();
 	double deltaTime = 0;
@@ -29,10 +38,10 @@ void Engine::Start(bool isServer)
 
 void Engine::SetUp(bool isServer)
 {
-	if (isServer)
+	if (!isServer)
 	{
 		_inputSystem = new InputSystem(gameIsRunning);
-		_graphicsSystem = new GraphicsSystem(Vector2(50, 50));
+		_graphicsSystem = new GraphicsSystem(Vector2(25, 50));
 	}
 }
 
@@ -42,12 +51,13 @@ void Engine::UpDate(double DeltaTime)
 		gameIsRunning = false;
 
 	//Update
-	/*for (auto actor : _actors)
-	{
-
-	}*/
+	if(_currentScene != nullptr)
+		for (int i = 0;i < _currentScene->GetActorNumbers();i++)
+		{
+			_currentScene->GetActors()[i]->Update();
+		}
 
 	//Draw
 	if (_graphicsSystem != nullptr)
-		_graphicsSystem->Draw(_actors);
+		_graphicsSystem->Draw(_currentScene);
 }

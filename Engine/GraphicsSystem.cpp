@@ -2,19 +2,19 @@
 #include <stdlib.h>
 #include<stdlib.h>
 #include <Windows.h>
-
 #include<stdio.h>
 #include<conio.h>
 #include<dos.h>
+#include "Graphic.h"
 
 GraphicsSystem::GraphicsSystem(Vector2 screenSize)
 {
 	_screenSize = screenSize;
-	
+
 	std::stringstream ss;
 	ss << "MODE CON COLS=" << (int)screenSize.y << " LINES=" << (int)screenSize.x;
 	system(ss.str().c_str());
-	
+
 	static CONSOLE_FONT_INFOEX  fontex;
 	fontex.cbSize = sizeof(CONSOLE_FONT_INFOEX);
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -40,33 +40,35 @@ const Vector2 GraphicsSystem::GetScreenSize()
 	return _screenSize;
 }
 
-void GraphicsSystem::Draw(ActorBase** actors)
+void GraphicsSystem::Draw(Scene* scene)
 {
 
 	//Clear console
-	system("CLS");
-	//for (auto a : actors)
-	//{
-	//	HANDLE h;
-	//	h = GetStdHandle(STD_OUTPUT_HANDLE); 
-	//	printf("\033[%d;%dH%s\n", (int) a->transform->position.y, (int) a->transform->position.x, "  ");
-	//	SetConsoleTextAttribute(h, BACKGROUND_INTENSITY);
-	//	printf("\033[%d;%dH%s\n", (int)a->transform->position.y, (int)a->transform->position.x + 2, "  ");
-	//	SetConsoleTextAttribute(h, 15);
-	//	printf("\033[%d;%dH%s\n", (int)a->transform->position.y, (int)a->transform->position.x + 4, "  ");
+	//system("CLS");
+	for (int i = 0; i < scene->GetActorNumbers(); i++)
+	{
+		for (auto g: scene->GetActors()[i]->GetComponents<Graphic>())
+		{
+			std::cout << "Draw Actor-> " << i << " Position-> " << scene->GetActors()[i]->transform->position.toString() << std::endl;
 
-	//	SetConsoleTextAttribute(h, BACKGROUND_INTENSITY);
-	//	printf("\033[%d;%dH%s\n", (int)a->transform->position.y + 1, (int)a->transform->position.x, "      ");
+			/*HANDLE h;
+			h = GetStdHandle(STD_OUTPUT_HANDLE);
+			printf("\033[%d;%dH%s\n", (int)a->transform->position.y, (int)a->transform->position.x, "  ");
+			SetConsoleTextAttribute(h, BACKGROUND_INTENSITY);
+			printf("\033[%d;%dH%s\n", (int)a->transform->position.y, (int)a->transform->position.x + 2, "  ");
+			SetConsoleTextAttribute(h, 15);
+			printf("\033[%d;%dH%s\n", (int)a->transform->position.y, (int)a->transform->position.x + 4, "  ");
+
+			SetConsoleTextAttribute(h, BACKGROUND_INTENSITY);
+			printf("\033[%d;%dH%s\n", (int)a->transform->position.y + 1, (int)a->transform->position.x, "      ");
 
 
-	//	SetConsoleTextAttribute(h, 15);
-	//	printf("\033[%d;%dH%s\n", (int)a->transform->position.y + 2, (int)a->transform->position.x, "  ");
-	//	SetConsoleTextAttribute(h, BACKGROUND_INTENSITY);
-	//	printf("\033[%d;%dH%s\n", (int)a->transform->position.y + 2, (int)a->transform->position.x + 2, "  ");
-	//	SetConsoleTextAttribute(h, 15);
-	//	printf("\033[%d;%dH%s\n", (int)a->transform->position.y + 2, (int)a->transform->position.x + 4, "  ");
-	//	//std::goto
-	//	//std::cout << std::goto
-	//}
-	std::cout << "Here";
+			SetConsoleTextAttribute(h, 15);
+			printf("\033[%d;%dH%s\n", (int)a->transform->position.y + 2, (int)a->transform->position.x, "  ");
+			SetConsoleTextAttribute(h, BACKGROUND_INTENSITY);
+			printf("\033[%d;%dH%s\n", (int)a->transform->position.y + 2, (int)a->transform->position.x + 2, "  ");
+			SetConsoleTextAttribute(h, 15);
+			printf("\033[%d;%dH%s\n", (int)a->transform->position.y + 2, (int)a->transform->position.x + 4, "  ");*/
+		}
+	}
 }

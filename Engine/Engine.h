@@ -1,10 +1,9 @@
 #pragma once
 #include <iostream>
 #include "ActorBase.h"
-#include "Shape.h"
 #include "InputSystem.h"
 #include "GraphicsSystem.h"
-#include "Vector2.h"
+#include "Scene.h"
 
 class Engine
 {
@@ -13,12 +12,14 @@ private:
 	InputSystem* _inputSystem = nullptr;
 	GraphicsSystem* _graphicsSystem = nullptr;
 	ActorBase** _actors;
+	Scene* _currentScene;
+
 	void SetUp(bool isServer);
 	void UpDate(double DeltaTime);
 
 public:
 	~Engine();
-	void Start(bool isServer);
+	void Start(Scene startScene ,bool isServer);
 	const bool IsGameRunning();
 };
 

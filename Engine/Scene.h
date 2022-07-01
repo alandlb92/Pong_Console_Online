@@ -3,34 +3,64 @@
 
 struct Scene
 {
+private:
 	std::string SceneName;
-	ActorBase** Actors;
+	ActorBase** Actors = nullptr;
 	int numberOfActors = 0;
+
+public:
+	Scene(std::string sceneName)
+	{
+		SceneName = sceneName;
+	}
+
+	std::string GetName()
+	{
+		return SceneName;
+	}
+
+	int GetActorNumbers()
+	{
+		return numberOfActors;
+	}
+
+	ActorBase** GetActors()
+	{
+		return Actors;
+	}
 
 	void AddActor(ActorBase* actor)
 	{
-		Actors = (ActorBase**)realloc(Actors, sizeof(ActorBase) * numberOfActors);
+		ActorBase** copy = (ActorBase**)realloc(Actors, (numberOfActors + 1) * sizeof(ActorBase*));
+		if (copy == NULL)
+			return;
+
+		Actors = copy;
 		Actors[numberOfActors] = actor;
 		numberOfActors++;
 	}
 
 	void DeleteActor(ActorBase* actor)
 	{
-		delete actor;
-		actor = nullptr;
-
-		int emptyIndex = -1;
+		int indexToDelete = -1;
 		for (int i = 0; i < numberOfActors; i++)
 		{
-			if (Actors[i] == nullptr)
-				emptyIndex = i;
+			if (Actors[i] == actor) {
+				indexToDelete = i;
+				break;
+			}
 		}
 
-		if (emptyIndex != numberOfActors - 1) {
-			Actors[emptyIndex] = Actors[numberOfActors - 1];
-			Actors[emptyIndex] = nullptr;
+		if (indexToDelete != numberOfActors - 1) {
+			Actors[indexToDelete] = Actors[numberOfActors - 1];
+			Actors[numberOfActors - 1] = nullptr;
 		}
+
 		numberOfActors--;
-		Actors = (ActorBase**)realloc(Actors, sizeof(ActorBase) * numberOfActors);
+		ActorBase** copy = (ActorBase**)realloc(Actors, (numberOfActors) * sizeof(ActorBase*));
+		if (copy == NULL)
+			return;
+
+		Actors = copy;
 	}
 };
