@@ -7,6 +7,7 @@
 #include "ActorBase.h"
 #include "Graphic.h"
 #include "Component.h"
+#include <Windows.h>
 
 void PrintScene(Scene* scene)
 {
@@ -26,16 +27,18 @@ void PrintScene(Scene* scene)
 int main()
 {
 	ActorBase _newActor = ActorBase();
-	_newActor.transform->position = Vector2(10);
+	_newActor.transform->position = Vector2(10, 2);
 
-	Component comp;
-	Graphic graphicComp;
+	Component comp;	
+										 
+	Form form[] =   { Form(255, "  ")};
 
+	Graphic graphicComp = Graphic(Image::CreateImage(form, 1, 1));
 	_newActor.AddComponent(&comp);
 	_newActor.AddComponent(&graphicComp);
 
 	ActorBase _newActor2 = ActorBase();
-	_newActor2.transform->position = Vector2(50);
+	_newActor2.transform->position = Vector2(10);
 
 	Scene scene = Scene("MainScene");
 	scene.AddActor(&_newActor);

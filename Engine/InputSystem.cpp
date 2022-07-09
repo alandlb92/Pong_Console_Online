@@ -2,11 +2,13 @@
 #include <conio.h>
 #include <iostream>
 #include <future>
+
 #ifdef _WIN32  || _WIN64
 #include <Windows.h>
 #else
 #include <unistd.h>
 #endif
+
 InputSystem::InputSystem(bool& gameIsRunning) : e_gameIsRunning(gameIsRunning)
 {
 	_inputThread = new std::thread(&InputSystem::InputThread, this);

@@ -1,8 +1,8 @@
 #include "Graphic.h"
 
-Color* Graphic::GetShape()
+Image* Graphic::GetImage()
 {
-	return _color;
+	return _image;
 }
 
 void  Graphic::Start()

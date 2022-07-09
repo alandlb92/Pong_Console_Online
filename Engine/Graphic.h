@@ -1,6 +1,6 @@
 #pragma once
 #include "Component.h"
-#include "Color.h"
+#include "Image.h"
 
 class Graphic : public Component
 {
@@ -9,12 +9,11 @@ public:
 
 	virtual void Start();
 	virtual void UpDate();
-	Graphic() : _color(new Color) {};
-	Graphic(Color* color) : _color(color) {}
-	Color* GetShape();
+	Graphic(Image image) : _image(&image) {}
+	Image* GetImage();
 
 private:
-	Color* _color;
+	Image* _image;
 
 };
 

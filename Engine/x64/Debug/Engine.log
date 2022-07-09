@@ -1,5 +1,2 @@
-﻿  ActorBase.cpp
-  Engine.cpp
-  GraphicsSystem.cpp
-  Generating Code...
+﻿  Component.cpp
   Engine.vcxproj -> C:\Users\alan.bittencourt\Documents\Personal\Pong_Console_Online\x64\Debug\Engine.lib

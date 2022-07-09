@@ -44,31 +44,36 @@ void GraphicsSystem::Draw(Scene* scene)
 {
 
 	//Clear console
-	//system("CLS");
+	system("CLS");
+	HANDLE h;
+	h = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	CONSOLE_SCREEN_BUFFER_INFOEX info;
+	info.cbSize = sizeof(CONSOLE_SCREEN_BUFFER_INFOEX);
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	GetConsoleScreenBufferInfoEx(hConsole, &info);
+
 	for (int i = 0; i < scene->GetActorNumbers(); i++)
 	{
-		for (auto g: scene->GetActors()[i]->GetComponents<Graphic>())
+		ActorBase* Actor = scene->GetActors()[i];
+		for (auto g : Actor->GetComponents<Graphic>())
 		{
-			std::cout << "Draw Actor-> " << i << " Position-> " << scene->GetActors()[i]->transform->position.toString() << std::endl;
-
-			/*HANDLE h;
-			h = GetStdHandle(STD_OUTPUT_HANDLE);
-			printf("\033[%d;%dH%s\n", (int)a->transform->position.y, (int)a->transform->position.x, "  ");
-			SetConsoleTextAttribute(h, BACKGROUND_INTENSITY);
-			printf("\033[%d;%dH%s\n", (int)a->transform->position.y, (int)a->transform->position.x + 2, "  ");
-			SetConsoleTextAttribute(h, 15);
-			printf("\033[%d;%dH%s\n", (int)a->transform->position.y, (int)a->transform->position.x + 4, "  ");
-
-			SetConsoleTextAttribute(h, BACKGROUND_INTENSITY);
-			printf("\033[%d;%dH%s\n", (int)a->transform->position.y + 1, (int)a->transform->position.x, "      ");
-
-
-			SetConsoleTextAttribute(h, 15);
-			printf("\033[%d;%dH%s\n", (int)a->transform->position.y + 2, (int)a->transform->position.x, "  ");
-			SetConsoleTextAttribute(h, BACKGROUND_INTENSITY);
-			printf("\033[%d;%dH%s\n", (int)a->transform->position.y + 2, (int)a->transform->position.x + 2, "  ");
-			SetConsoleTextAttribute(h, 15);
-			printf("\033[%d;%dH%s\n", (int)a->transform->position.y + 2, (int)a->transform->position.x + 4, "  ");*/
+			Image* image = g->GetImage();
+			int counter = 0;
+			for (int j = 0; j < image->GetHeight(); j++)
+			{
+				int offset = 0;
+				for (int k = 0; k < image->GetWidth(); k++)
+				{
+					Form* form = image->GetImageForm()[counter];
+					SetConsoleTextAttribute(h, form->wordAtributes);
+					printf("\033[%d;%dH%s\n", (int)Actor->transform->position.y + j, (int)Actor->transform->position.x + k + offset, form->form.c_str());
+					counter++;
+					offset += (form->form.size() - 1);
+				}
+			}		
 		}
 	}
+	SetConsoleTextAttribute(h, 15);
 }
