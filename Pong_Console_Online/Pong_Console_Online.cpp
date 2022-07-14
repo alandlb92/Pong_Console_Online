@@ -7,13 +7,14 @@
 #include "ActorBase.h"
 #include "Graphic.h"
 #include "Component.h"
+#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 void PrintScene(Scene* scene)
 {
-	std::cout << std::endl << std::endl << scene->GetName() << " with " << scene->GetActorNumbers() << " actors" << std::endl;
+	std::cout << std::endl << std::endl << scene->GetName() << " with " << scene->GetActorCount() << " actors" << std::endl;
 
-	for (int i = 0; i < scene->GetActorNumbers(); i++)
+	for (int i = 0; i < scene->GetActorCount(); i++)
 	{
 		if (scene->GetActors()[i] == nullptr)
 		{
@@ -28,13 +29,11 @@ int main()
 {
 	ActorBase _newActor = ActorBase();
 	_newActor.transform->position = Vector2(10, 2);
-
-	Component comp;	
-										 
+									 
 	Form form[] =   { Form(255, "  ")};
 
 	Graphic graphicComp = Graphic(Image::CreateImage(form, 1, 1));
-	_newActor.AddComponent(&comp);
+
 	_newActor.AddComponent(&graphicComp);
 
 	ActorBase _newActor2 = ActorBase();

@@ -8,7 +8,6 @@
 class Engine
 {
 private:
-	bool gameIsRunning = true;
 	InputSystem* _inputSystem = nullptr;
 	GraphicsSystem* _graphicsSystem = nullptr;
 	ActorBase** _actors;
@@ -19,7 +18,7 @@ private:
 
 public:
 	~Engine();
+	bool gameIsRunning = true;
 	void Start(Scene startScene ,bool isServer);
-	const bool IsGameRunning();
 };
 

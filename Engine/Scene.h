@@ -5,8 +5,10 @@ struct Scene
 {
 private:
 	std::string SceneName;
+	Component** _components = nullptr;
 	ActorBase** Actors = nullptr;
 	int numberOfActors = 0;
+	int numberOfComponent = 0;
 
 public:
 	Scene(std::string sceneName)
@@ -19,14 +21,35 @@ public:
 		return SceneName;
 	}
 
-	int GetActorNumbers()
+	int GetComponentsCount()
+	{
+		return numberOfComponent;
+	}
+
+	int GetActorCount()
 	{
 		return numberOfActors;
+	}
+
+	Component** GetComponents()
+	{
+		return _components;
 	}
 
 	ActorBase** GetActors()
 	{
 		return Actors;
+	}
+
+	void AddComponent(Component* component)
+	{
+		Component** copy = (Component**)realloc(Actors, (numberOfComponent + 1) * sizeof(Component*));
+		if (copy == NULL)
+			return;
+
+		_components = copy;
+		_components[numberOfComponent] = component;
+		numberOfComponent++;
 	}
 
 	void AddActor(ActorBase* actor)

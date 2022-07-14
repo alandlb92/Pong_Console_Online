@@ -1,0 +1,23 @@
+﻿  ConnectionComponent.cpp
+  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
+  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
+  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
+  EchoWebsocket.cpp
+  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
+  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
+  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
+  Player.cpp
+C:\Users\alan.bittencourt\Documents\Personal\Pong_Console_Online\Engine\Image.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Pong_Server.cpp
+C:\Users\alan.bittencourt\Documents\Personal\Pong_Console_Online\Engine\Image.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\cpp\boost_1_79_0\boost\asio\detail\socket_types.hpp(24,1): fatal error C1189: #error:  WinSock.h has already been included
+  WebListener.cpp
+  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
+  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
+  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
+  Generating Code...
+C:\Users\alan.bittencourt\Documents\Personal\Pong_Console_Online\Pong_Server\Player.cpp(11): warning C4717: 'Player::Update': recursive on all control paths, function will cause runtime stack overflow
+C:\Users\alan.bittencourt\Documents\Personal\Pong_Console_Online\Pong_Server\Player.cpp(6): warning C4717: 'Player::Start': recursive on all control paths, function will cause runtime stack overflow

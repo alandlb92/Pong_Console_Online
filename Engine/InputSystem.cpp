@@ -3,11 +3,8 @@
 #include <iostream>
 #include <future>
 
-#ifdef _WIN32  || _WIN64
+#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
-#else
-#include <unistd.h>
-#endif
 
 InputSystem::InputSystem(bool& gameIsRunning) : e_gameIsRunning(gameIsRunning)
 {

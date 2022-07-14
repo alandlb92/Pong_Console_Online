@@ -28,11 +28,11 @@ void ActorBase::Start()
 	}
 }
 
-void ActorBase::Update()
+void ActorBase::Update(double DeltaTime)
 {
 	//std::cout << "Component Update" << std::endl;
 	for (int i = 0; i < _componentsCount; i++)
 	{
-		_components[i]->UpDate();
+		_components[i]->Update(DeltaTime);
 	}
 }

@@ -2,10 +2,19 @@
 //
 
 #include <iostream>
+#include "../Engine/ActorBase.cpp"
+#include "../Engine/Scene.h"
+#include "../Engine/Engine.h"
+#include "ConnectionComponent.h"
 
 int main()
 {
-    std::cout << "Hello Server!\n";
+	Engine _engine;
+	ConnectionComponent* _connection = new ConnectionComponent(_engine.gameIsRunning);
+	
+	Scene scene = Scene("MainScene");
+	scene.AddComponent(_connection);
+	_engine.Start(scene, true);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

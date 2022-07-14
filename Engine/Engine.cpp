@@ -1,14 +1,10 @@
 #include "Engine.h"
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
 Engine::~Engine()
 {
 	delete _inputSystem;
-}
-
-const bool Engine::IsGameRunning()
-{
-	return gameIsRunning;
 }
 
 void Engine::Start(Scene startScene, bool isServer)
@@ -17,17 +13,24 @@ void Engine::Start(Scene startScene, bool isServer)
 
 	SetUp(isServer);
 
+	//Start Components and Actors
 	if (_currentScene != nullptr)
-		for (int i = 0; i < _currentScene->GetActorNumbers(); i++)
+	{
+		for (int i = 0; i < _currentScene->GetActorCount(); i++)
 		{
 			_currentScene->GetActors()[i]->Start();
 		}
+		for (int i = 0; i < _currentScene->GetComponentsCount(); i++)
+		{
+			_currentScene->GetComponents()[i]->Start();
+		}
+	}
 
 	auto currentTime = std::chrono::high_resolution_clock::now();
 	auto lastTime = std::chrono::high_resolution_clock::now();
 	double deltaTime = 0;
 
-	while (IsGameRunning())
+	while (gameIsRunning)
 	{
 		currentTime = std::chrono::high_resolution_clock::now();
 		deltaTime = std::chrono::duration_cast<std::chrono::nanoseconds>(currentTime - lastTime).count() * 1e-9;
@@ -47,15 +50,19 @@ void Engine::SetUp(bool isServer)
 
 void Engine::UpDate(double DeltaTime)
 {
-	if (_inputSystem->GetKey("Escape"))
-		gameIsRunning = false;
-
 	//Update
-	if(_currentScene != nullptr)
-		for (int i = 0;i < _currentScene->GetActorNumbers();i++)
+	if (_currentScene != nullptr) 
+	{
+		for (int i = 0;i < _currentScene->GetActorCount();i++)
 		{
-			_currentScene->GetActors()[i]->Update();
+			_currentScene->GetActors()[i]->Update(DeltaTime);
 		}
+
+		for (int i = 0; i < _currentScene->GetComponentsCount(); i++)
+		{
+			_currentScene->GetComponents()[i]->Update(DeltaTime);
+		}
+	}
 
 	//Draw
 	if (_graphicsSystem != nullptr)

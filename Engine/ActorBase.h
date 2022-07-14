@@ -30,7 +30,7 @@ public:
 	void AddComponent(Component* component);
 
 	virtual void Start();
-	virtual void Update();
+	virtual void Update(double DeltaTime);
 
 };
 

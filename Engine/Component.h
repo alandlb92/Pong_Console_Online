@@ -3,6 +3,6 @@ class Component
 {
 public:
 	virtual void Start();
-	virtual void UpDate();
+	virtual void Update(double DeltaTime);
 };
 

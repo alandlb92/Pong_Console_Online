@@ -10,7 +10,7 @@ void  Graphic::Start()
 	super::Start();
 }
 
-void  Graphic::UpDate()
+void  Graphic::Update(double DeltaTime)
 {
-	super::UpDate();
+	super::Update(DeltaTime);
 }

@@ -1,6 +1,7 @@
 #include "GraphicsSystem.h"
 #include <stdlib.h>
 #include<stdlib.h>
+#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include<stdio.h>
 #include<conio.h>
@@ -54,7 +55,7 @@ void GraphicsSystem::Draw(Scene* scene)
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	GetConsoleScreenBufferInfoEx(hConsole, &info);
 
-	for (int i = 0; i < scene->GetActorNumbers(); i++)
+	for (int i = 0; i < scene->GetActorCount(); i++)
 	{
 		ActorBase* Actor = scene->GetActors()[i];
 		for (auto g : Actor->GetComponents<Graphic>())
