@@ -1,15 +1,16 @@
 #pragma once
-#include "EchoWebsocket.h"
+#include "ClientWebsocketConnection.h"
 
 class WebListener
 {
 private:
 	net::io_context& ioc;
 	tcp::acceptor acceptor;
-	EchoWebsocket** _clients;
+	ClientWebsocketConnection** _clients;
 	int _clientsCount = 0;
 
-	void addClient(EchoWebsocket*);
+	void addClient(ClientWebsocketConnection*);
+	void removeClient(ClientWebsocketConnection*);
 
 public:
 	WebListener(net::io_context& ioc,

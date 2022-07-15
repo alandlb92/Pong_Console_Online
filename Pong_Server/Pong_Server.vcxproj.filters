@@ -27,7 +27,7 @@
     <ClCompile Include="WebListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EchoWebsocket.cpp">
+    <ClCompile Include="ClientWebsocketConnection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +41,7 @@
     <ClInclude Include="WebListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EchoWebsocket.h">
+    <ClInclude Include="ClientWebsocketConnection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
