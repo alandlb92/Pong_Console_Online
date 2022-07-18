@@ -15,15 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Pong_Console_Online.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ClientConnectionComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ClientConnectionComponent.h">
+    <ClInclude Include="PlayerData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

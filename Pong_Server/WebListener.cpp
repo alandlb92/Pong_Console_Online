@@ -24,7 +24,6 @@ void WebListener::addClient(ClientWebsocketConnection* client)
 	_clients[_clientsCount] = client;
 	_clientsCount++;
 	std::cout << "ClientCount: " << _clientsCount << std::endl;
-
 }
 
 

@@ -27,22 +27,17 @@ void PrintScene(Scene* scene)
 
 int main()
 {
-	ActorBase _newActor = ActorBase();
-	_newActor.transform->position = Vector2(10, 2);
-									 
-	Form form[] =   { Form(255, "  ")};
+	std::string serverPath;
+	std::string nickName;
 
-	Graphic graphicComp = Graphic(Image::CreateImage(form, 1, 1));
+	//Enter Server Path
+	std::cin >> serverPath;
+	//Connect With Server
 
-	_newActor.AddComponent(&graphicComp);
 
-	ActorBase _newActor2 = ActorBase();
-	_newActor2.transform->position = Vector2(10);
+	//Enter Your NickName
 
 	Scene scene = Scene("MainScene");
-	scene.AddActor(&_newActor);
-	scene.AddActor(&_newActor2);
-
 	Engine _engine;
 	_engine.Start(scene, false);
 }
