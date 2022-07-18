@@ -1,11 +1,12 @@
 #pragma once
 #include "Component.h"
-#include <iostream>
-#include <boost/beast.hpp>
-#include <boost/beast/http.hpp>
+#include <boost/beast/core.hpp>
 #include <boost/beast/websocket.hpp>
-#include <boost/asio.hpp>
+#include <boost/asio/connect.hpp>
 #include <boost/asio/ip/tcp.hpp>
+#include <cstdlib>
+#include <iostream>
+#include <string>
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
 namespace http = beast::http;           // from <boost/beast/http.hpp>
@@ -15,11 +16,6 @@ using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 
 class ClientConnectionComponent : public Component
 {
-private:
-	net::io_context ioc;
-	tcp::resolver resolver;
-	websocket::stream<tcp::socket> ws;
-
 public:
 	ClientConnectionComponent(std::string serverURL);
 

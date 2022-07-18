@@ -7,6 +7,7 @@
 #include "ActorBase.h"
 #include "Graphic.h"
 #include "Component.h"
+#include "ClientConnectionComponent.h"
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
@@ -27,17 +28,18 @@ void PrintScene(Scene* scene)
 
 int main()
 {
-	std::string serverPath;
-	std::string nickName;
+	ClientConnectionComponent* netComp = new ClientConnectionComponent("ws://127.0.0.1:5050/");
+	//std::string serverPath;
+	//std::string nickName;
 
-	//Enter Server Path
-	std::cin >> serverPath;
-	//Connect With Server
+	////Enter Server Path
+	//std::cin >> serverPath;
+	////Connect With Server
 
 
-	//Enter Your NickName
+	////Enter Your NickName
 
-	Scene scene = Scene("MainScene");
-	Engine _engine;
-	_engine.Start(scene, false);
+	//Scene scene = Scene("MainScene");
+	//Engine _engine;
+	//_engine.Start(scene, false);
 }
