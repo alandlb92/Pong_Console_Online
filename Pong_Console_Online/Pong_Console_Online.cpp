@@ -28,7 +28,13 @@ void PrintScene(Scene* scene)
 
 int main()
 {
-	ClientConnectionComponent* netComp = new ClientConnectionComponent("ws://127.0.0.1:5050/");
+	ClientConnectionComponent* netComp = new ClientConnectionComponent("127.0.0.1", 5050);
+	netComp->Start();
+
+	while (true)
+	{
+		netComp->Update(1);
+	}
 	//std::string serverPath;
 	//std::string nickName;
 

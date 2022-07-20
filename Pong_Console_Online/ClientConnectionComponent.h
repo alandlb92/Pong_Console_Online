@@ -17,7 +17,19 @@ using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 class ClientConnectionComponent : public Component
 {
 public:
-	ClientConnectionComponent(std::string serverURL);
+	typedef Component super;
+	ClientConnectionComponent(std::string serverIp, int port);
+	virtual void Start() override;
+	virtual void Update(double deltaTime) override;
+	void WriteData(std::string msg);
+	void ReaderThread();
+
+private:
+	std::thread* _readerThread;
+	std::string dataTest;
+	net::io_context ioc;
+	tcp::resolver resolver{ ioc };
+	websocket::stream<tcp::socket> ws{ ioc };
 
 };
 
