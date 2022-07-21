@@ -5,12 +5,15 @@
 #include <string>
 #include <thread>
 #include <sstream>
+#include "ClientData.h"
+#include <boost/archive/text_iarchive.hpp>
 
 namespace beast = boost::beast;
 namespace http = beast::http;
 namespace websocket = beast::websocket;
 namespace net = boost::asio;
 using tcp = boost::asio::ip::tcp;
+using namespace boost::archive;
 
 class ClientWebsocketConnection
 {
@@ -19,6 +22,7 @@ private:
 	beast::flat_buffer buffer;
 	bool canSendAndReceiveData = false;
 	std::function<void(ClientWebsocketConnection*)> OnDisconectClient;
+	ClientData _data;
 
 public:
 

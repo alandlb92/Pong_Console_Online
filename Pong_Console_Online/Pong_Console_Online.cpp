@@ -28,24 +28,37 @@ void PrintScene(Scene* scene)
 
 int main()
 {
-	ClientConnectionComponent* netComp = new ClientConnectionComponent("127.0.0.1", 5050);
-	netComp->Start();
-
-	while (true)
-	{
-		netComp->Update(1);
-	}
-	//std::string serverPath;
-	//std::string nickName;
+	std::cout << "Client version 0.1a" << std::endl << std::endl;
+	std::string serverIp;
+	int port;
+	std::string name;
 
 	////Enter Server Path
-	//std::cin >> serverPath;
+	std::cout << "Enter the server ip and server port:" << std::endl;
+	std::cin >> serverIp;
+	std::cin >> port;
+	ClientConnectionComponent* netComp;
+
+	try
+	{
+		netComp = new ClientConnectionComponent(serverIp, port);
+	}
+	catch (const std::exception&)
+	{
+		////Connect With Server
+		std::cout << "Server not found" << std::endl;
+		return 0;
+	}
+
 	////Connect With Server
+	std::cout << "Server Connected :)" << std::endl;
+	std::cout << "Enter your name:" << std::endl;
+	std::cin >> name;
 
+	netComp->SetUpClientData(name);
 
-	////Enter Your NickName
-
-	//Scene scene = Scene("MainScene");
-	//Engine _engine;
-	//_engine.Start(scene, false);
+	Scene scene = Scene("MainScene");
+	scene.AddComponent(netComp);
+	Engine _engine;
+	_engine.Start(scene, false);
 }

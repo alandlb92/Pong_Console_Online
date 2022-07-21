@@ -3,6 +3,8 @@
 
 ClientConnectionComponent::ClientConnectionComponent(std::string serverIp, int port)
 {
+    _clientData = nullptr;
+
     std::stringstream serverURL;
     serverURL << "ws://" << serverIp << ":" << port;
 
@@ -18,7 +20,7 @@ ClientConnectionComponent::ClientConnectionComponent(std::string serverIp, int p
             " websocket-client-coro");
     }));
     ws.handshake(serverURL.str(), "/");
-
+    ws.binary(true);
 
     _readerThread = new std::thread(&ClientConnectionComponent::ReaderThread, this);
 }
@@ -26,7 +28,7 @@ ClientConnectionComponent::ClientConnectionComponent(std::string serverIp, int p
 void ClientConnectionComponent::Start()
 {
     super::Start();
-    WriteData("Hello from Start");
+    WriteData();
 }
 
 void ClientConnectionComponent::Update(double deltaTime)
@@ -35,9 +37,12 @@ void ClientConnectionComponent::Update(double deltaTime)
     std::cout << dataTest;
 }
 
-void ClientConnectionComponent::WriteData(std::string msg)
+void ClientConnectionComponent::WriteData()
 {
-    ws.write(net::buffer(std::string(msg)));
+    std::stringstream ss;
+    text_oarchive oa{ ss };
+    oa << *_clientData;
+    ws.write(net::buffer(ss.str()));
 }
 
 void ClientConnectionComponent::ReaderThread()
@@ -47,4 +52,12 @@ void ClientConnectionComponent::ReaderThread()
     std::stringstream ss;
     ss << beast::make_printable(buffer.data()) << std::endl;
     dataTest = ss.str();
+}
+
+
+void ClientConnectionComponent::SetUpClientData(std::string name)
+{
+    _clientData = new ClientData();
+    _clientData->Name = name;
+    WriteData();
 }

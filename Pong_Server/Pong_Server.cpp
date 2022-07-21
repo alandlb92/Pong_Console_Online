@@ -9,6 +9,8 @@
 
 int main()
 {
+	std::cout << "version0.1a" << std::endl;	
+
 	Engine _engine;
 	ConnectionComponent* _connection = new ConnectionComponent(_engine.gameIsRunning);
 	
