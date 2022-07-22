@@ -1,5 +1,6 @@
 #pragma once
 #include "ClientWebsocketConnection.h"
+#include "ServerData.h"
 
 class WebListener
 {
@@ -15,9 +16,10 @@ private:
 public:
 	WebListener(net::io_context& ioc,
 		unsigned short int port) :ioc(ioc),
-		acceptor(ioc, { net::ip::make_address("127.0.0.1"), port }) {}
+		acceptor(ioc, { net::ip::make_address("127.0.0.1"), port }),
+		_clients(nullptr) {}
 
 	void asyncAccept();
-	void sendMessageToAllClients(std::string msg);
+	void sendDataToAllClients(ServerData serverData);
 };
 

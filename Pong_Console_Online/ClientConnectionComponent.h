@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include "ClientData.h"
+#include "ServerData.h"
 #include <boost/archive/text_oarchive.hpp>
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
@@ -27,9 +28,11 @@ public:
 	void WriteData();
 	void ReaderThread();
 	void SetUpClientData(std::string name);
+	std::function<void(ServerData)> OnReceiveData;
 
 private:
-	ClientData* _clientData;
+	ClientData _clientData;
+	ServerData _data;
 
 	std::thread* _readerThread;
 	std::string dataTest;

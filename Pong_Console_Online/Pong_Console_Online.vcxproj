@@ -151,7 +151,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BallActor.cpp" />
     <ClCompile Include="ClientConnectionComponent.cpp" />
+    <ClCompile Include="DataReceiver.cpp" />
     <ClCompile Include="Pong_Console_Online.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +165,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BallActor.h" />
     <ClInclude Include="ClientConnectionComponent.h" />
+    <ClInclude Include="DataReceiver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

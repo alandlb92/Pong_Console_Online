@@ -37,14 +37,17 @@ void ClientWebsocketConnection::echo()
 			});
 }
 
-void ClientWebsocketConnection::sendMesage(std::string msg)
+void ClientWebsocketConnection::sendMesage(ServerData serverData)
 {
-	if (canSendAndReceiveData) {
-
+	if (canSendAndReceiveData) 
+	{
 		if (ws.is_open())
 		{
+			std::stringstream ss;
+			text_oarchive oa{ ss };
+			oa << serverData;
 			boost::beast::error_code err;
-			ws.write(boost::asio::buffer(msg), err);
+			ws.write(boost::asio::buffer(ss.str()), err);
 		}
 		else {
 			OnDisconectClient(this);

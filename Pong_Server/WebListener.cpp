@@ -64,11 +64,11 @@ void WebListener::removeClient(ClientWebsocketConnection* client)
 	std::cout << "ClientCount: " << _clientsCount << std::endl;
 }
 
-void WebListener::sendMessageToAllClients(std::string msg)
+void WebListener::sendDataToAllClients(ServerData serverData)
 {
 	for (int i = 0; i < _clientsCount; i++)
 	{
 		if (_clients[i] != nullptr)
-			_clients[i]->sendMesage(msg);
+			_clients[i]->sendMesage(serverData);
 	}
 }

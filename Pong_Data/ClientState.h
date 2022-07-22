@@ -2,5 +2,5 @@
 enum ClientState
 {
 	PAUSED,
-	RUNNING
+	PLAYING
 };

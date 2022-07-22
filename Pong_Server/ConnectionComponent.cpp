@@ -12,9 +12,7 @@ void ConnectionComponent::Start()
 void  ConnectionComponent::Update(double DeltaTime)
 {
 	super::Update(DeltaTime);
-	std::stringstream ss;
-	ss << "Hello Client " << DeltaTime;
-	_webListener->sendMessageToAllClients(ss.str());
+	_webListener->sendDataToAllClients(_serverData);
 }
 
 ConnectionComponent::~ConnectionComponent()
@@ -26,4 +24,9 @@ ConnectionComponent::~ConnectionComponent()
 void ConnectionComponent::WebThread()
 {
 	ioc.run();
+}
+
+void ConnectionComponent::UpdateBallPosition(Vector2 position)
+{
+	_serverData.BallPosition = position;
 }

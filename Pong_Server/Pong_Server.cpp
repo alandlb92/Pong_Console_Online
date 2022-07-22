@@ -5,6 +5,7 @@
 #include "../Engine/ActorBase.cpp"
 #include "../Engine/Scene.h"
 #include "../Engine/Engine.h"
+#include "BallActor.h"
 #include "ConnectionComponent.h"
 
 int main()
@@ -12,10 +13,13 @@ int main()
 	std::cout << "version0.1a" << std::endl;	
 
 	Engine _engine;
-	ConnectionComponent* _connection = new ConnectionComponent(_engine.gameIsRunning);
 	
+	ConnectionComponent* _connection = new ConnectionComponent(_engine.gameIsRunning);
+	//BallActor* ball = new BallActor(bind(&ConnectionComponent::UpdateBallPosition, _connection, std::placeholders::_1));
+
 	Scene scene = Scene("MainScene");
 	scene.AddComponent(_connection);
+	//scene.AddActor(ball);
 	_engine.Start(scene, true);
 }
 

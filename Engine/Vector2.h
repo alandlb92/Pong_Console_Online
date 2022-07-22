@@ -1,9 +1,13 @@
 #pragma once
 #include <iostream>
 #include <sstream>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/serialization/string.hpp>
 
-struct Vector2
+class Vector2
 {
+public:
 	float x;
 	float y;
 
@@ -30,5 +34,14 @@ struct Vector2
 		std::stringstream ss;
 		ss << "x: " << x << " y: " << y << std::endl;
 		return ss.str();
+	}
+private:
+	friend class boost::serialization::access;
+
+	template<typename Archive>
+	friend void serialize(Archive& ar, Vector2& a, const unsigned int version)
+	{
+		ar& a.x;
+		ar& a.y;
 	}
 };

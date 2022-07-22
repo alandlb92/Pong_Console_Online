@@ -1,6 +1,6 @@
 #pragma once
 enum GameState
 {
-	PAUSED,
+	WAITING,
 	RUNNING
 };

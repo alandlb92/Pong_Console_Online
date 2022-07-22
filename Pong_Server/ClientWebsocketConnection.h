@@ -7,6 +7,7 @@
 #include <sstream>
 #include "ClientData.h"
 #include <boost/archive/text_iarchive.hpp>
+#include "ServerData.h"
 
 namespace beast = boost::beast;
 namespace http = beast::http;
@@ -31,6 +32,6 @@ public:
 
 	void run();
 	void echo();
-	void sendMesage(std::string msg);
+	void sendMesage(ServerData serverData);
 };
 

@@ -8,8 +8,10 @@
 #include "Graphic.h"
 #include "Component.h"
 #include "ClientConnectionComponent.h"
+#include "DataReceiver.h"
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include "BallActor.h"
 
 void PrintScene(Scene* scene)
 {
@@ -50,15 +52,27 @@ int main()
 		return 0;
 	}
 
+
 	////Connect With Server
 	std::cout << "Server Connected :)" << std::endl;
 	std::cout << "Enter your name:" << std::endl;
 	std::cin >> name;
 
+	Engine _engine;
+	Scene scene = Scene("MainScene");
+	DataReceiver* _dataReceiver = new DataReceiver;
+	BallActor* _ballActor = new BallActor;
+	Image _ballImage = Image::CreateImage({ new Form(0, "O") }, 1, 1);
+	Graphic* _ballGraphic = new Graphic(_ballImage);
+	
+	netComp->OnReceiveData = bind(&DataReceiver::Distribute, _dataReceiver, std::placeholders::_1);
 	netComp->SetUpClientData(name);
 
-	Scene scene = Scene("MainScene");
+	_ballActor->AddComponent(_ballGraphic);
+
+	_dataReceiver->SetBallPosition = bind(&BallActor::SetPosition, _ballActor, std::placeholders::_1);
+
 	scene.AddComponent(netComp);
-	Engine _engine;
+
 	_engine.Start(scene, false);
 }
