@@ -33,21 +33,20 @@ void ClientWebsocketConnection::echo()
 				if (logClientStart)
 					std::cout << _data.Name << " has connected" << std::endl << std::endl;
 
+				OnReceiveData(_data);
+
 				echo();
 			});
 }
 
-void ClientWebsocketConnection::sendMesage(ServerData serverData)
+void ClientWebsocketConnection::sendMesage(std::string serializedData)
 {
 	if (canSendAndReceiveData) 
 	{
 		if (ws.is_open())
 		{
-			std::stringstream ss;
-			text_oarchive oa{ ss };
-			oa << serverData;
 			boost::beast::error_code err;
-			ws.write(boost::asio::buffer(ss.str()), err);
+			ws.write(boost::asio::buffer(serializedData), err);
 		}
 		else {
 			OnDisconectClient(this);

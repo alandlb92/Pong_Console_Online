@@ -6,7 +6,7 @@ void BallActor::Start()
 
 void BallActor::Update(double DeltaTime)
 {
-	super::Update(DeltaTime);		
+	super::Update(DeltaTime);
 }
 
 void BallActor::SetPosition(Vector2 position)

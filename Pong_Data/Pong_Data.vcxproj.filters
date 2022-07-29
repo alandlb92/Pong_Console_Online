@@ -33,9 +33,15 @@
     <ClInclude Include="InputState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IdHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IdHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

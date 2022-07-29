@@ -1,5 +1,5 @@
 #pragma once
-enum ClientState
+enum class ClientState
 {
 	PAUSED,
 	PLAYING

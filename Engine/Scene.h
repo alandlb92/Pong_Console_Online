@@ -16,6 +16,7 @@ public:
 		SceneName = sceneName;
 	}
 
+
 	std::string GetName()
 	{
 		return SceneName;
@@ -47,7 +48,7 @@ public:
 		if (copy == NULL)
 			return;
 
-		_components = copy;
+		_components = copy;		
 		_components[numberOfComponent] = component;
 		numberOfComponent++;
 	}

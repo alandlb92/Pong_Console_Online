@@ -154,7 +154,9 @@
     <ClCompile Include="BallActor.cpp" />
     <ClCompile Include="ClientConnectionComponent.cpp" />
     <ClCompile Include="DataReceiver.cpp" />
+    <ClCompile Include="PlayerInputComponent.cpp" />
     <ClCompile Include="Pong_Console_Online.cpp" />
+    <ClCompile Include="RacketActor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -168,6 +170,8 @@
     <ClInclude Include="BallActor.h" />
     <ClInclude Include="ClientConnectionComponent.h" />
     <ClInclude Include="DataReceiver.h" />
+    <ClInclude Include="PlayerInputComponent.h" />
+    <ClInclude Include="RacketActor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

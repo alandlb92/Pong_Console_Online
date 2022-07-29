@@ -10,8 +10,8 @@ class ServerData
 {
 public:
 	Vector2 BallPosition;
-	Vector2 Player1Position;
-	Vector2 Player2Position;
+	Vector2 RacketPlayer1Position;
+	Vector2 RacketPlayer2Position;
 	GameState GameState;
 private:
 	friend class boost::serialization::access;
@@ -20,9 +20,9 @@ private:
 	friend void serialize(Archive& ar, ServerData& a, const unsigned int version)
 	{
 		ar& a.BallPosition;
-		ar& a.Player1Position;
-		ar& a.Player2Position;
-		ar& a.Player1Position;
+		ar& a.RacketPlayer1Position;
+		ar& a.RacketPlayer2Position;
+		ar& a.RacketPlayer1Position;
 		ar& a.GameState;
 	}
 };

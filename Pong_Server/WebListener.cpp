@@ -3,14 +3,12 @@
 void WebListener::asyncAccept()
 {
 	acceptor.async_accept(ioc, [this](boost::system::error_code sysError, tcp::socket socket) {
-		ClientWebsocketConnection* client = new ClientWebsocketConnection(std::move(socket), std::bind(&WebListener::removeClient, this, std::placeholders::_1));
+		ClientWebsocketConnection* client = new ClientWebsocketConnection(std::move(socket), std::bind(&WebListener::removeClient, this, std::placeholders::_1), OnReceiveFromOneClient);
 		addClient(client);
 		client->run();
 		asyncAccept();
 		});
 }
-
-
 
 void WebListener::addClient(ClientWebsocketConnection* client)
 {
@@ -66,9 +64,13 @@ void WebListener::removeClient(ClientWebsocketConnection* client)
 
 void WebListener::sendDataToAllClients(ServerData serverData)
 {
+	std::stringstream ss;
+	text_oarchive oa{ ss };
+	oa << serverData;
+
 	for (int i = 0; i < _clientsCount; i++)
 	{
 		if (_clients[i] != nullptr)
-			_clients[i]->sendMesage(serverData);
+			_clients[i]->sendMesage(ss.str());
 	}
 }

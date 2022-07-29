@@ -10,6 +10,7 @@
 #include "ClientData.h"
 #include "ServerData.h"
 #include <boost/archive/text_oarchive.hpp>
+#include "InputState.h"
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
 namespace http = beast::http;           // from <boost/beast/http.hpp>
@@ -25,12 +26,14 @@ public:
 	ClientConnectionComponent(std::string serverIp, int port);
 	virtual void Start() override;
 	virtual void Update(double deltaTime) override;
-	void WriteData();
 	void ReaderThread();
 	void SetUpClientData(std::string name);
+	void SetPlayerInput(InputState inputState);
+
 	std::function<void(ServerData)> OnReceiveData;
 
 private:
+	void WriteData();
 	ClientData _clientData;
 	ServerData _data;
 

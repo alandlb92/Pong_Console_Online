@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="ClientData.h" />
     <ClInclude Include="ClientUtils.h" />
+    <ClInclude Include="IdHelper.h" />
     <ClInclude Include="InputState.h" />
     <ClInclude Include="ServerData.h" />
     <ClInclude Include="ClientState.h" />
@@ -33,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientUtils.cpp" />
+    <ClCompile Include="IdHelper.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -43,20 +43,30 @@ void ClientConnectionComponent::WriteData()
 
 void ClientConnectionComponent::ReaderThread()
 {
-	beast::flat_buffer buffer;
-	ws.read(buffer);
-	auto out = beast::buffers_to_string(buffer.cdata());
-	std::stringstream ss;
-	ss << out;
-	text_iarchive ia{ ss };
-	ia >> _data;
-	if (OnReceiveData)
-		OnReceiveData(_data);
+	while (1)
+	{
+		beast::flat_buffer buffer;
+		ws.read(buffer);
+		auto out = beast::buffers_to_string(buffer.cdata());
+		std::stringstream ss;
+		ss << out;
+		text_iarchive ia{ ss };
+		ia >> _data;
+		if (OnReceiveData)
+			OnReceiveData(_data);
+	}
 }
 
 
 void ClientConnectionComponent::SetUpClientData(std::string name)
 {
 	_clientData.Name = name;
+	WriteData();
+}
+
+
+void ClientConnectionComponent::SetPlayerInput(InputState inputState)
+{
+	_clientData.InputState = inputState;
 	WriteData();
 }

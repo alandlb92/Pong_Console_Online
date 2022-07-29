@@ -154,15 +154,17 @@
     <ClCompile Include="BallActor.cpp" />
     <ClCompile Include="ConnectionComponent.cpp" />
     <ClCompile Include="ClientWebsocketConnection.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="DataReceiver.cpp" />
     <ClCompile Include="Pong_Server.cpp" />
+    <ClCompile Include="Racket.cpp" />
     <ClCompile Include="WebListener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BallActor.h" />
     <ClInclude Include="ConnectionComponent.h" />
     <ClInclude Include="ClientWebsocketConnection.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="DataReceiver.h" />
+    <ClInclude Include="Racket.h" />
     <ClInclude Include="WebListener.h" />
   </ItemGroup>
   <ItemGroup>

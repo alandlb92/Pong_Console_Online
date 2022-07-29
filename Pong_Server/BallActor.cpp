@@ -23,5 +23,5 @@ void BallActor::Update(double DeltaTime)
 		transform->position.x -= (velocity * DeltaTime);
 
 	if (updateOnlinePosition)
-		updateOnlinePosition(transform->position);
+		updateOnlinePosition(transform->position);	
 }

@@ -12,6 +12,8 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include "BallActor.h"
+#include "PlayerInputComponent.h"
+#include "RacketActor.h"
 
 void PrintScene(Scene* scene)
 {
@@ -27,6 +29,7 @@ void PrintScene(Scene* scene)
 		std::cout << "Actor index: " << i << " position: " << scene->GetActors()[i]->transform->position.toString();
 	}
 }
+
 
 int main()
 {
@@ -58,12 +61,24 @@ int main()
 	std::cout << "Enter your name:" << std::endl;
 	std::cin >> name;
 
-	Engine _engine;
+	Engine* _engine = new Engine();
 	Scene scene = Scene("MainScene");
 	DataReceiver* _dataReceiver = new DataReceiver;
+	PlayerInputComponent* _playerInput = new PlayerInputComponent(bind(&ClientConnectionComponent::SetPlayerInput, netComp, std::placeholders::_1));
+
 	BallActor* _ballActor = new BallActor;
-	Image _ballImage = Image::CreateImage({ new Form(0, "O") }, 1, 1);
+	Image _ballImage = Image::CreateImage({ new Form(15, "O") }, 1, 1);
 	Graphic* _ballGraphic = new Graphic(_ballImage);
+
+	RacketActor* _racketActor1 = new RacketActor();
+	RacketActor* _racketActor2 = new RacketActor();
+	
+	Form racketForm[3] = { {15,""},{15,""}, {15,""} };
+	Image _racketImage = Image::CreateImage(racketForm, 1, 3);
+	Graphic* _racketForm = new Graphic(_racketImage);
+
+	_racketActor1->AddComponent(_racketForm);
+	_racketActor2->AddComponent(_racketForm);
 	
 	netComp->OnReceiveData = bind(&DataReceiver::Distribute, _dataReceiver, std::placeholders::_1);
 	netComp->SetUpClientData(name);
@@ -71,8 +86,11 @@ int main()
 	_ballActor->AddComponent(_ballGraphic);
 
 	_dataReceiver->SetBallPosition = bind(&BallActor::SetPosition, _ballActor, std::placeholders::_1);
+	_dataReceiver->SetRacketplayer1Position = bind(&RacketActor::SetPosition, _racketActor1, std::placeholders::_1);
+	_dataReceiver->SetRacketplayer2Position = bind(&RacketActor::SetPosition, _racketActor2, std::placeholders::_1);
 
 	scene.AddComponent(netComp);
+	scene.AddActor(_ballActor);
 
-	_engine.Start(scene, false);
+	_engine->Start(scene, false);
 }

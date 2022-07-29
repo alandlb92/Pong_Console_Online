@@ -26,6 +26,7 @@ public:
 	}
 
 	ActorBase();
+
 	Transform* transform;
 	void AddComponent(Component* component);
 

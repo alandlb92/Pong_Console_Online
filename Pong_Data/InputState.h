@@ -1,5 +1,5 @@
 #pragma once
-enum InputState
+enum class InputState
 {
 	Up_Arrow,
 	Down_Arrow,

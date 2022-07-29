@@ -7,7 +7,7 @@ class BallActor : public ActorBase
 {
 private:
 	typedef ActorBase super;
-	float velocity;
+	float velocity = 10;
 	bool toRight = true;
 public:
 	BallActor(std::function<void(Vector2)> updateOnlineBallPosition) : updateOnlinePosition(updateOnlineBallPosition) {}

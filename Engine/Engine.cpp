@@ -9,9 +9,11 @@ Engine::~Engine()
 
 void Engine::Start(Scene startScene, bool isServer)
 {
+
 	_currentScene = &startScene;
 
 	SetUp(isServer);
+
 
 	//Start Components and Actors
 	if (_currentScene != nullptr)
@@ -67,4 +69,10 @@ void Engine::UpDate(double DeltaTime)
 	//Draw
 	if (_graphicsSystem != nullptr)
 		_graphicsSystem->Draw(_currentScene);
+}
+
+
+InputSystem* Engine::GetInputSystem()
+{
+	return _inputSystem;
 }

@@ -27,11 +27,13 @@ private:
 
 public:
 
-	ClientWebsocketConnection(tcp::socket&& socket, std::function<void(ClientWebsocketConnection*)> _onDisconectClient) : ws(std::move(socket)), OnDisconectClient(_onDisconectClient) {}
+	ClientWebsocketConnection(tcp::socket&& socket, std::function<void(ClientWebsocketConnection*)> _onDisconectClient, std::function<void(ClientData)> _OnReceiveData) 
+		: ws(std::move(socket)), OnDisconectClient(_onDisconectClient), OnReceiveData(_OnReceiveData) {}
 	~ClientWebsocketConnection() {}
 
 	void run();
 	void echo();
-	void sendMesage(ServerData serverData);
+	void sendMesage(std::string serializedServerData);
+	std::function<void(ClientData)> OnReceiveData;
 };
 

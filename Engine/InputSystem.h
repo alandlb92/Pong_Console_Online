@@ -2,6 +2,7 @@
 #include <map>
 #include <list>
 #include <future>
+#include "KeyState.h"
 
 class InputSystem
 {
@@ -16,11 +17,6 @@ private:
 	void InputThread();
 	void Update();
 
-	enum KeyState
-	{
-		Holded,
-		Clean
-	};
 	struct Key
 	{
 		const char* name;
@@ -30,7 +26,6 @@ private:
 
 	std::list<Key> keyList
 	{
-		//{"AnyArrow", 224, KeyState::Clean},
 		{"Arrow_Up", 72, KeyState::Clean},
 		{"Arrow_Down", 80, KeyState::Clean},
 		{"Arrow_Right", 77, KeyState::Clean},

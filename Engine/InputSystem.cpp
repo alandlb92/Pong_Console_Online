@@ -65,7 +65,7 @@ void InputSystem::CalculateCurrentKeyStates(int currentPressed)
 
 void InputSystem::printKeysStates(std::list<Key> list, const char* tittle)
 {
-	std::cout << "*************************" << tittle << "****************************" << std::endl;
+	/*std::cout << "*************************" << tittle << "****************************" << std::endl;
 	std::cout << "{" << std::endl;
 	for (auto k : list)
 	{
@@ -76,5 +76,5 @@ void InputSystem::printKeysStates(std::list<Key> list, const char* tittle)
 			<< "   }," << std::endl;
 	}
 	std::cout << "}" << std::endl;
-	std::cout << "*****************************************************" << std::endl;
+	std::cout << "*****************************************************" << std::endl;*/
 }

@@ -24,7 +24,7 @@ void ActorBase::Start()
 	//std::cout << "Component Start" << std::endl;
 	for (int i = 0; i < _componentsCount; i++)
 	{
-		_components[i]->Start();		
+		_components[i]->Start();
 	}
 }
 

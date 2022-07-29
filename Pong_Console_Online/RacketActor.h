@@ -1,7 +1,7 @@
 #pragma once
 #include "ActorBase.h"
-#include "ServerData.h"
-class BallActor : public ActorBase
+
+class RacketActor : public ActorBase
 {
 private:
 	typedef ActorBase super;
@@ -9,6 +9,6 @@ private:
 public:
 	void SetPosition(Vector2 position);
 	virtual void Start() override;
-	virtual void Update(double DeltaTime) override;
+	virtual void Update(double deltaTime) override;
 };
 
