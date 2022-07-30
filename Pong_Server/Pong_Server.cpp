@@ -30,8 +30,12 @@ int main()
 	_dataReceiver->Racketplayer2 = racketPlayer2;
 
 	Scene scene = Scene("MainScene");
+
 	scene.AddComponent(_connection);
 	scene.AddActor(ball);
+	scene.AddActor(racketPlayer1);
+	scene.AddActor(racketPlayer2);	
+	
 	_engine.Start(scene, true);
 }
 

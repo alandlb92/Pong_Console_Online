@@ -18,13 +18,14 @@ void Engine::Start(Scene startScene, bool isServer)
 	//Start Components and Actors
 	if (_currentScene != nullptr)
 	{
-		for (int i = 0; i < _currentScene->GetActorCount(); i++)
-		{
-			_currentScene->GetActors()[i]->Start();
-		}
 		for (int i = 0; i < _currentScene->GetComponentsCount(); i++)
 		{
 			_currentScene->GetComponents()[i]->Start();
+		}
+
+		for (int i = 0; i < _currentScene->GetActorCount(); i++)
+		{
+			_currentScene->GetActors()[i]->Start();
 		}
 	}
 
@@ -55,14 +56,14 @@ void Engine::UpDate(double DeltaTime)
 	//Update
 	if (_currentScene != nullptr) 
 	{
-		for (int i = 0;i < _currentScene->GetActorCount();i++)
-		{
-			_currentScene->GetActors()[i]->Update(DeltaTime);
-		}
-
 		for (int i = 0; i < _currentScene->GetComponentsCount(); i++)
 		{
 			_currentScene->GetComponents()[i]->Update(DeltaTime);
+		}
+
+		for (int i = 0;i < _currentScene->GetActorCount();i++)
+		{
+			_currentScene->GetActors()[i]->Update(DeltaTime);
 		}
 	}
 

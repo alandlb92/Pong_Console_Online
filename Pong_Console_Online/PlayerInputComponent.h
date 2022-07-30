@@ -16,7 +16,8 @@ private:
 public:
 	PlayerInputComponent(std::function<void(InputState)> _OnInputChanged)
 		: OnInputChanged(_OnInputChanged) {};
-	void Update(double DeltaTime) override;
+	virtual void Start() override;
+	virtual void Update(double DeltaTime) override;
 
 };
 

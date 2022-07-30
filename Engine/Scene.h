@@ -44,7 +44,7 @@ public:
 
 	void AddComponent(Component* component)
 	{
-		Component** copy = (Component**)realloc(Actors, (numberOfComponent + 1) * sizeof(Component*));
+		Component** copy = (Component**)realloc(_components, (numberOfComponent + 1) * sizeof(Component*));
 		if (copy == NULL)
 			return;
 

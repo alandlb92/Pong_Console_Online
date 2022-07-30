@@ -6,6 +6,7 @@
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/serialization/string.hpp>
+#include <boost/serialization/level_enum.hpp>
 
 class ClientData
 {
@@ -24,7 +25,7 @@ private:
 		ar& a.Id;
 		ar& a.Name;
 		ar& a.State;
-		ar& a.State;
+		ar&  a.InputState;
 	}
 };
 

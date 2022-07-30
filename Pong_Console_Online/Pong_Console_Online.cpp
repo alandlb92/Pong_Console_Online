@@ -38,7 +38,7 @@ int main()
 	int port;
 	std::string name;
 
-	////Enter Server Path
+	//Enter Server Path
 	std::cout << "Enter the server ip and server port:" << std::endl;
 	std::cin >> serverIp;
 	std::cin >> port;
@@ -50,13 +50,13 @@ int main()
 	}
 	catch (const std::exception&)
 	{
-		////Connect With Server
+		//Connect With Server
 		std::cout << "Server not found" << std::endl;
 		return 0;
 	}
 
 
-	////Connect With Server
+	//Connect With Server
 	std::cout << "Server Connected :)" << std::endl;
 	std::cout << "Enter your name:" << std::endl;
 	std::cin >> name;
@@ -73,7 +73,7 @@ int main()
 	RacketActor* _racketActor1 = new RacketActor();
 	RacketActor* _racketActor2 = new RacketActor();
 	
-	Form racketForm[3] = { {15,""},{15,""}, {15,""} };
+	Form racketForm[3] = { {15,"|"},{15,"|"}, {15,"|"} };
 	Image _racketImage = Image::CreateImage(racketForm, 1, 3);
 	Graphic* _racketForm = new Graphic(_racketImage);
 
@@ -90,7 +90,10 @@ int main()
 	_dataReceiver->SetRacketplayer2Position = bind(&RacketActor::SetPosition, _racketActor2, std::placeholders::_1);
 
 	scene.AddComponent(netComp);
+	scene.AddComponent(_playerInput);
 	scene.AddActor(_ballActor);
+	scene.AddActor(_racketActor1);
+	scene.AddActor(_racketActor2);
 
 	_engine->Start(scene, false);
 }

@@ -3,13 +3,16 @@
 #include <list>
 #include <future>
 #include "KeyState.h"
+#include "KeyCode.h"
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 
 class InputSystem
 {
 public:
 	InputSystem(bool& gameIsRunning);
 	~InputSystem();
-	bool GetKey(const char* keyName);
+	bool GetKey(KeyCode keyCode);
 
 private:
 	bool& e_gameIsRunning;
@@ -19,22 +22,22 @@ private:
 
 	struct Key
 	{
-		const char* name;
+		KeyCode key;
 		const int value;
 		KeyState state;
 	};
 
 	std::list<Key> keyList
 	{
-		{"Arrow_Up", 72, KeyState::Clean},
-		{"Arrow_Down", 80, KeyState::Clean},
-		{"Arrow_Right", 77, KeyState::Clean},
-		{"Arrow_Left", 75, KeyState::Clean},
-		{"Escape", 27, KeyState::Clean}
+		{KeyCode::UpArrow, VK_UP, KeyState::Clean},
+		{KeyCode::DownArrow, VK_DOWN, KeyState::Clean},
+		{KeyCode::RightArrow, VK_RIGHT, KeyState::Clean},
+		{KeyCode::LeftArrow, VK_LEFT, KeyState::Clean},
+		{KeyCode::Escape, VK_ESCAPE, KeyState::Clean}
 	};
 	std::map<Key, KeyState> keyStates;
 	void printKeysStates(std::list<Key> list, const char* tittle);
-	void CalculateCurrentKeyStates(int currentPressed);
-	std::list<Key>::iterator FoundKey(const char* keyName);
+	void CalculateCurrentKeyStates();
+	std::list<Key>::iterator FoundKey(KeyCode keyCode);
 };
 

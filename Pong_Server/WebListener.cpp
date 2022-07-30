@@ -49,7 +49,7 @@ void WebListener::removeClient(ClientWebsocketConnection* client)
 		free(_clients);
 		_clients = NULL;
 	}
-	else 
+	else
 	{
 		ClientWebsocketConnection** copy = (ClientWebsocketConnection**)realloc(_clients, (_clientsCount) * sizeof(ClientWebsocketConnection*));
 		if (copy == NULL) {
@@ -67,10 +67,10 @@ void WebListener::sendDataToAllClients(ServerData serverData)
 	std::stringstream ss;
 	text_oarchive oa{ ss };
 	oa << serverData;
-
-	for (int i = 0; i < _clientsCount; i++)
-	{
-		if (_clients[i] != nullptr)
-			_clients[i]->sendMesage(ss.str());
-	}
+	if (_clientsCount > 0)
+		for (int i = 0; i < _clientsCount; i++)
+		{
+			if (_clients[i] != nullptr)
+				_clients[i]->sendMesage(ss.str());
+		}
 }

@@ -16,6 +16,8 @@ void Racket::Update(double DeltaTime)
 	}
 
 	ClampPosition();
+	if (OnUpdateRacketPosition)
+		OnUpdateRacketPosition(transform->position);
 };
 
 void Racket::UpdateRacketState(InputState state)
@@ -34,8 +36,8 @@ int Racket::GetClientId()
 	return clientId;
 }
 
-void  Racket::Posses(int clientId)
+void  Racket::Posses(int _clientId)
 {
 	State = InputState::Idle;
-	clientId = clientId;
+	clientId = _clientId;
 }
