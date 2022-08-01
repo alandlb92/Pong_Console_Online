@@ -4,14 +4,14 @@
 void ConnectionComponent::Start()
 {
 	super::Start();
-	_webListener = new WebListener(ioc, port, bind(&ConnectionComponent::OnReceiveDataFromOneClient, this, std::placeholders::_1));
+	_webListener = new WebListener(ioc, port, bind(&ConnectionComponent::OnReceiveDataFromOneClient, this, std::placeholders::_1, std::placeholders::_2));
 	_webListener->asyncAccept();
 	_webThread = new std::thread(&ConnectionComponent::WebThread, this);
 }
 
-void ConnectionComponent::OnReceiveDataFromOneClient(ClientData clientData)
+void ConnectionComponent::OnReceiveDataFromOneClient(ClientData clientData, int clientId)
 {
-	OnReceiveData(clientData, _serverData);
+	OnReceiveData(clientData, clientId);
 }
 
 void  ConnectionComponent::Update(double DeltaTime)

@@ -12,11 +12,11 @@ private:
 
 	void addClient(ClientWebsocketConnection*);
 	void removeClient(ClientWebsocketConnection*);
-	std::function<void(ClientData)> OnReceiveFromOneClient;
+	std::function<void(ClientData, int)> OnReceiveFromOneClient;
 
 public:
 	WebListener(net::io_context& ioc,
-		unsigned short int port, std::function<void(ClientData)> _OnReceiveFromOneClient)
+		unsigned short int port, std::function<void(ClientData, int)> _OnReceiveFromOneClient)
 		:ioc(ioc),
 		acceptor(ioc, { net::ip::make_address("127.0.0.1"), port }),
 		_clients(nullptr),

@@ -6,7 +6,7 @@
 class ConnectionComponent : public Component
 {
 public:
-	ConnectionComponent(bool& gameIsRunning, std::function<void(ClientData, ServerData&)> _OnReceiveData) 
+	ConnectionComponent(bool& gameIsRunning, std::function<void(ClientData, int)> _OnReceiveData) 
 	: e_gameIsRunning(gameIsRunning), _serverData(ServerData{}), _webListener(nullptr), OnReceiveData(_OnReceiveData) {};
 	~ConnectionComponent();
 
@@ -22,8 +22,8 @@ public:
 
 
 private:
-	void OnReceiveDataFromOneClient(ClientData clientData);
-	std::function<void(ClientData, ServerData&)> OnReceiveData;
+	void OnReceiveDataFromOneClient(ClientData clientData, int clientId);
+	std::function<void(ClientData, int)> OnReceiveData;
 	ServerData _serverData;
 	int const port = 5050;
 	net::io_context ioc;

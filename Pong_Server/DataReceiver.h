@@ -9,6 +9,6 @@ class DataReceiver
 public:
 	Racket* Racketplayer1;
 	Racket* Racketplayer2;
-	void Distribute(ClientData clientData, ServerData& serverDataReference);
+	void Distribute(ClientData clientData, int clientId);
 };
 
