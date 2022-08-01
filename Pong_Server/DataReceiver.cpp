@@ -11,7 +11,7 @@ void DataReceiver::Distribute(ClientData clientData, ServerData& serverDataRefer
 
 
 	if (Racketplayer1->GetClientId() == clientData.Id)
-		Racketplayer1->UpdateRacketState(clientData.InputState);
+		Racketplayer1->UpdateRacketState(clientData._InputState);
 	else if (Racketplayer2->GetClientId() == clientData.Id)
-		Racketplayer2->UpdateRacketState(clientData.InputState);
+		Racketplayer2->UpdateRacketState(clientData._InputState);
 }

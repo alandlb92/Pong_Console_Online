@@ -34,7 +34,7 @@ void ClientWebsocketConnection::echo()
 					std::cout << _data.Name << " has connected" << std::endl << std::endl;
 
 				OnReceiveData(_data);
-
+				buffer.clear();
 				echo();
 			});
 }

@@ -19,7 +19,7 @@ void SerializeTests::ClientDataTest()
 	ClientData clientDataToSerialize;
 	
 	clientDataToSerialize.Id = 10;
-	clientDataToSerialize.InputState = InputState::Down_Arrow;
+	clientDataToSerialize._InputState = InputState::Down_Arrow;
 	clientDataToSerialize.Name = "Retsuke";
 	clientDataToSerialize.State = ClientState::PAUSED;
 
@@ -42,7 +42,7 @@ bool SerializeTests::CompareClientData(ClientData a, ClientData b)
 {
 	return
 	a.Id == b.Id
-	&& a.InputState == b.InputState
+	&& a._InputState == b._InputState
 	&& a.Name == b.Name
 	&& a.State == b.State;
 }

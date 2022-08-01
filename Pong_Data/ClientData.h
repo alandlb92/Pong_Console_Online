@@ -6,7 +6,6 @@
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/serialization/string.hpp>
-#include <boost/serialization/level_enum.hpp>
 
 class ClientData
 {
@@ -14,8 +13,8 @@ public:
 	int Id;
 	std::string Name;
 	ClientState State;
-	InputState InputState;
-	ClientData() : Id(IdHelper::GetNewId()), Name(""), State(ClientState::PLAYING), InputState(InputState::Idle) {}
+	InputState _InputState;
+	ClientData() : Id(IdHelper::GetNewId()), Name(""), State(ClientState::PLAYING), _InputState(InputState::Idle) {}
 private:
 	friend class boost::serialization::access;
 
@@ -25,7 +24,7 @@ private:
 		ar& a.Id;
 		ar& a.Name;
 		ar& a.State;
-		ar&  a.InputState;
+		ar&  a._InputState;
 	}
 };
 

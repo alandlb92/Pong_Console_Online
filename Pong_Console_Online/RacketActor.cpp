@@ -2,10 +2,12 @@
 
 void RacketActor::Start() 
 {
+	super::Start();
 }
 
 void RacketActor::Update(double deltaTime)
 {
+	super::Update(deltaTime);
 }
 
 

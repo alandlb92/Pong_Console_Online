@@ -1,6 +1,6 @@
 #pragma once
 enum class ClientState
 {
-	PAUSED,
-	PLAYING
+	PAUSED = 0,
+	PLAYING = 1
 };

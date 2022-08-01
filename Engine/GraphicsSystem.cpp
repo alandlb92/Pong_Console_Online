@@ -58,6 +58,7 @@ void GraphicsSystem::Draw(Scene* scene)
 	for (int i = 0; i < scene->GetActorCount(); i++)
 	{
 		ActorBase* Actor = scene->GetActors()[i];
+		
 		for (auto g : Actor->GetComponents<Graphic>())
 		{
 			Image* image = g->GetImage();

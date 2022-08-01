@@ -67,6 +67,6 @@ void ClientConnectionComponent::SetUpClientData(std::string name)
 
 void ClientConnectionComponent::SetPlayerInput(InputState inputState)
 {
-	_clientData.InputState = inputState;
+	_clientData._InputState = inputState;
 	WriteData();
 }
