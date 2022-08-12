@@ -3,16 +3,25 @@
 #include <list>
 #include "ActorBase.h"
 #include "Scene.h"
+#include <future>
+
 
 class GraphicsSystem
 {
 
 public:
-	GraphicsSystem(Vector2 screenSize);
+	GraphicsSystem(Vector2 screenSize, bool& gameIsRunning, Scene& scene);
+	~GraphicsSystem();
 	const Vector2 GetScreenSize();
-	void Draw(Scene* scene);
+	void Draw();
 
 private:
-	Vector2 _screenSize;	
+	const int DrawnDelayMS = 100;
+	bool& e_gameIsRunning;
+	Scene& _currentScene;
+
+	std::thread* _graphicsThread = nullptr;
+	void GraphicsThread();
+	Vector2 _screenSize;
 };
 

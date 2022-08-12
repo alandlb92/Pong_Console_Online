@@ -9,9 +9,8 @@ Engine::~Engine()
 
 void Engine::Start(Scene startScene, bool isServer)
 {
-
 	_currentScene = &startScene;
-
+	gameIsRunning = true;
 	SetUp(isServer);
 
 
@@ -47,8 +46,10 @@ void Engine::SetUp(bool isServer)
 	if (!isServer)
 	{
 		_inputSystem = new InputSystem(gameIsRunning);
-		_graphicsSystem = new GraphicsSystem(Vector2(25, 50));
+		_graphicsSystem = new GraphicsSystem(Vector2(25, 50), gameIsRunning, *_currentScene);
 	}
+
+	_physicsSystem = new PhysicsSystem(gameIsRunning, *_currentScene);
 }
 
 void Engine::UpDate(double DeltaTime)
@@ -66,14 +67,4 @@ void Engine::UpDate(double DeltaTime)
 			_currentScene->GetActors()[i]->Update(DeltaTime);
 		}
 	}
-
-	//Draw
-	if (_graphicsSystem != nullptr)
-		_graphicsSystem->Draw(_currentScene);
-}
-
-
-InputSystem* Engine::GetInputSystem()
-{
-	return _inputSystem;
 }

@@ -5,12 +5,17 @@
 #include "GraphicsSystem.h"
 #include "Scene.h"
 #include "Game.h"
+#include "PhysicsSystem.h"
+#include "Game.h"
 
 class Engine
 {
+	friend class Game;
 private:
 	InputSystem* _inputSystem = nullptr;
 	GraphicsSystem* _graphicsSystem = nullptr;
+	PhysicsSystem* _physicsSystem = nullptr;
+
 	ActorBase** _actors = nullptr;
 	Scene* _currentScene = nullptr;
 	Game* _world;
@@ -22,8 +27,7 @@ private:
 public:
 	Engine() : _world(new Game(this)) {}
 	~Engine();
-	bool gameIsRunning = true;
+	bool gameIsRunning = false;
 	void Start(Scene startScene ,bool isServer);
-	InputSystem* GetInputSystem();
 };
 

@@ -33,5 +33,9 @@ public:
 	virtual void Start();
 	virtual void Update(double DeltaTime);
 
+	virtual void OnCollisionEnter(std::vector<ActorBase*> others);
+	virtual void OnCollisionStay(std::vector<ActorBase*> others);
+	virtual void OnCollisionExit(std::vector<ActorBase*> others);
+
 };
 

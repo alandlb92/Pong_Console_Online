@@ -18,7 +18,6 @@ void SerializeTests::ClientDataTest()
 {
 	ClientData clientDataToSerialize;
 	
-	clientDataToSerialize.Id = 10;
 	clientDataToSerialize._InputState = InputState::Down_Arrow;
 	clientDataToSerialize.Name = "Retsuke";
 	clientDataToSerialize.State = ClientState::PAUSED;
@@ -26,7 +25,8 @@ void SerializeTests::ClientDataTest()
 	std::stringstream ss;	
 	boost::archive::text_oarchive oa{ ss };
 	oa << clientDataToSerialize;
-	assert(ss.str() == "22 serialization::archive 19 0 0 10 7 Retsuke 0 1");
+	std::cout << ss.str() << std::endl;						
+	assert(ss.str() == "22 serialization::archive 19 0 0 7 Retsuke 0 1");
 	std::cout << "ClientDataTest SERIALIZATION passed" << std::endl;
 
 	ClientData clientDataToDeserialize;
@@ -40,9 +40,7 @@ void SerializeTests::ClientDataTest()
 
 bool SerializeTests::CompareClientData(ClientData a, ClientData b)
 {
-	return
-	a.Id == b.Id
-	&& a._InputState == b._InputState
+	return a._InputState == b._InputState
 	&& a.Name == b.Name
 	&& a.State == b.State;
 }

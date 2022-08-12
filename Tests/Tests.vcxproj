@@ -151,11 +151,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ColliderTests.cpp" />
+    <ClCompile Include="CountUntilAndExecute.cpp" />
     <ClCompile Include="SerializeTests.cpp" />
+    <ClCompile Include="TestColliderActor.cpp" />
     <ClCompile Include="Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ColliderTests.h" />
+    <ClInclude Include="CountUntilAndExecute.h" />
     <ClInclude Include="SerializeTests.h" />
+    <ClInclude Include="TestColliderActor.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">

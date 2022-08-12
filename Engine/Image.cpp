@@ -13,6 +13,8 @@ Image Image::CreateImage(Form colors[], int Width, int Height)
 		{
 			newImage._Form[i] = &colors[i];
 		}
+
+
 	return newImage;
 }
 

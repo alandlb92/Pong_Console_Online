@@ -15,5 +15,6 @@ public:
 	static Game* GetInstance();
 
 	class InputSystem* GetInputSystem();
+	class Scene* GetCurrentScene();
 };
 

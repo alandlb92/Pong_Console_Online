@@ -1,7 +1,7 @@
 #pragma once
 #include "ActorBase.h"
 
-struct Scene
+class Scene
 {
 private:
 	std::string SceneName;

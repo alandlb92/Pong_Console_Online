@@ -5,9 +5,13 @@ Game* Game::Instance = nullptr;
 
 InputSystem* Game::GetInputSystem()
 {
-	return _engine->GetInputSystem();
+	return _engine->_inputSystem;
 }
 
+Scene* Game::GetCurrentScene()
+{
+	return _engine->_currentScene;
+}
 
 Game* Game::GetInstance()
 {

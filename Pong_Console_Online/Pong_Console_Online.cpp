@@ -26,7 +26,7 @@ void PrintScene(Scene* scene)
 			std::cout << "NULL" << std::endl;
 		}
 		else
-		std::cout << "Actor index: " << i << " position: " << scene->GetActors()[i]->transform->position.toString();
+			std::cout << "Actor index: " << i << " position: " << scene->GetActors()[i]->transform->position.toString();
 	}
 }
 
@@ -67,19 +67,20 @@ int main()
 	PlayerInputComponent* _playerInput = new PlayerInputComponent(bind(&ClientConnectionComponent::SetPlayerInput, netComp, std::placeholders::_1));
 
 	BallActor* _ballActor = new BallActor;
-	Image _ballImage = Image::CreateImage({ new Form(15, "O") }, 1, 1);
+	Form ballForm[1] = {{15, "O"}};
+	Image _ballImage = Image::CreateImage(ballForm, 1, 1);
 	Graphic* _ballGraphic = new Graphic(_ballImage);
 
 	RacketActor* _racketActor1 = new RacketActor();
 	RacketActor* _racketActor2 = new RacketActor();
-	
-	Form racketForm[3] = { {15,"|"},{15,"|"}, {15,"|"} };
+
+	Form racketForm[3] = {{15,"|"},{15,"|"}, {15,"|"}};
 	Image _racketImage = Image::CreateImage(racketForm, 1, 3);
 	Graphic* _racketForm = new Graphic(_racketImage);
 
 	_racketActor1->AddComponent(_racketForm);
 	_racketActor2->AddComponent(_racketForm);
-	
+
 	netComp->OnReceiveData = bind(&DataReceiver::Distribute, _dataReceiver, std::placeholders::_1);
 	netComp->SetUpClientData(name);
 

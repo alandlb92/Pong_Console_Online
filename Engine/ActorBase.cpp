@@ -12,6 +12,8 @@ void ActorBase::AddComponent(Component* component)
 	if (copy == NULL)
 		return;
 
+	component->SetBaseActor(this);
+
 	_components = copy;
 
 	_components[_componentsCount] = component;
@@ -35,4 +37,20 @@ void ActorBase::Update(double DeltaTime)
 	{
 		_components[i]->Update(DeltaTime);
 	}
+}
+
+
+void ActorBase::OnCollisionEnter(std::vector<ActorBase*> others)
+{
+
+}
+
+void ActorBase::OnCollisionStay(std::vector<ActorBase*> others)
+{
+
+}
+
+void ActorBase::OnCollisionExit(std::vector<ActorBase*> others)
+{
+
 }

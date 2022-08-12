@@ -18,9 +18,9 @@ void BallActor::Update(double DeltaTime)
 
 
 	if (toRight)
-		transform->position.x += (velocity * DeltaTime);
+		transform->position.x += (velocity * (float) DeltaTime);
 	else
-		transform->position.x -= (velocity * DeltaTime);
+		transform->position.x -= (velocity * (float) DeltaTime);
 
 	if (updateOnlinePosition)
 		updateOnlinePosition(transform->position);	
