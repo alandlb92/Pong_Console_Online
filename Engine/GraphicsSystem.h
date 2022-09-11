@@ -10,15 +10,19 @@ class GraphicsSystem
 {
 
 public:
-	GraphicsSystem(Vector2 screenSize, bool& gameIsRunning, Scene& scene);
+	GraphicsSystem(Vector2 screenSize, float margin, bool& gameIsRunning, Scene& scene);
 	~GraphicsSystem();
 	const Vector2 GetScreenSize();
 	void Draw();
 
 private:
-	const int DrawnDelayMS = 100;
+	const int fps = 30;
+	const bool DrawBorder = true;
+	int _marginVertical;
+	int _marginHorizontal;
 	bool& e_gameIsRunning;
 	Scene& _currentScene;
+	void cls(HANDLE hConsole);
 
 	std::thread* _graphicsThread = nullptr;
 	void GraphicsThread();

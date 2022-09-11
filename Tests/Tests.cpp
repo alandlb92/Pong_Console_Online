@@ -8,6 +8,10 @@
 
 int main()
 {
+  /*  Scene scene = Scene("MainScene");
+    Engine* engine = new Engine(Vector2(15,5), 20);
+    engine->Start(scene, false);*/
+
     SerializeTests serializeTest;
     serializeTest.Run();
 

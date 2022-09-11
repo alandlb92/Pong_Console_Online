@@ -40,6 +40,28 @@ void ActorBase::Update(double DeltaTime)
 }
 
 
+void ActorBase::AddTag(std::string newTag)
+{
+	_tags.push_back(newTag);
+}
+
+void ActorBase::RemoveTag(std::string tagToDelete)
+{
+	std::vector<std::string>::iterator it = std::find(_tags.begin(), _tags.end(), tagToDelete);
+	_tags.erase(it);
+}
+
+bool ActorBase::ContainsTag(std::string tagName)
+{
+	for (std::string v : _tags)
+	{
+		if (v == tagName)
+			return true;
+	}
+
+	return false;
+}
+
 void ActorBase::OnCollisionEnter(std::vector<ActorBase*> others)
 {
 

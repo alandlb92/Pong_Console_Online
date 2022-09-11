@@ -12,6 +12,8 @@ class Engine
 {
 	friend class Game;
 private:
+	Vector2 _screenSize;
+	float _margin;
 	InputSystem* _inputSystem = nullptr;
 	GraphicsSystem* _graphicsSystem = nullptr;
 	PhysicsSystem* _physicsSystem = nullptr;
@@ -25,7 +27,9 @@ private:
 	void UpDate(double DeltaTime);
 
 public:
-	Engine() : _world(new Game(this)) {}
+	Engine(Vector2 screenSize, float margin) : _world(new Game(this)), _screenSize(screenSize), _margin(margin) {
+		
+	}
 	~Engine();
 	bool gameIsRunning = false;
 	void Start(Scene startScene ,bool isServer);

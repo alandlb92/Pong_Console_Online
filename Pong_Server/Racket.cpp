@@ -1,7 +1,9 @@
 #include "Racket.h"
+#include "BoxColliderComponent.h"
 
 void Racket::Start()
 {
+	AddComponent(new BoxColliderComponent(1, 3));
 };
 
 void Racket::Update(double DeltaTime)

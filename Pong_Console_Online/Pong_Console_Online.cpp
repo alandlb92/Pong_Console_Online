@@ -61,7 +61,7 @@ int main()
 	std::cout << "Enter your name:" << std::endl;
 	std::cin >> name;
 
-	Engine* _engine = new Engine();
+	Engine* _engine = new Engine(Vector2(150, 75), 30);
 	Scene scene = Scene("MainScene");
 	DataReceiver* _dataReceiver = new DataReceiver;
 	PlayerInputComponent* _playerInput = new PlayerInputComponent(bind(&ClientConnectionComponent::SetPlayerInput, netComp, std::placeholders::_1));

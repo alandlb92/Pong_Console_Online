@@ -10,6 +10,7 @@ class ActorBase
 private:
 	Component** _components = nullptr;
 	int _componentsCount;
+	std::vector<std::string> _tags;
 
 public:
 	template<class T>
@@ -29,6 +30,11 @@ public:
 
 	Transform* transform;
 	void AddComponent(Component* component);
+
+
+	void AddTag(std::string newTag);
+	void RemoveTag(std::string tagToDelete);
+	bool ContainsTag(std::string tagName);
 
 	virtual void Start();
 	virtual void Update(double DeltaTime);

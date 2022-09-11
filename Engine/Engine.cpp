@@ -46,7 +46,7 @@ void Engine::SetUp(bool isServer)
 	if (!isServer)
 	{
 		_inputSystem = new InputSystem(gameIsRunning);
-		_graphicsSystem = new GraphicsSystem(Vector2(25, 50), gameIsRunning, *_currentScene);
+		_graphicsSystem = new GraphicsSystem(_screenSize, _margin, gameIsRunning, *_currentScene);
 	}
 
 	_physicsSystem = new PhysicsSystem(gameIsRunning, *_currentScene);

@@ -88,7 +88,7 @@ TestColliderActor* ColliderTests::GetActorById(int id)
 
 void ColliderTests::Run()
 {
-	_engine = new Engine();
+	_engine = new Engine(Vector2(150, 75), 50);
 	CountUntilAndExecute* countUntil = new CountUntilAndExecute(std::bind(&ColliderTests::OnTimeOver, this), 5.0);
 
 	TestColliderActor* actor1 = new TestColliderActor(3, 3);
